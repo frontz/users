@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="notesApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+    </script>
+    <script src="app.js"></script>
+    <title>Użytkownicy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="MainCtrl as mainCtrl">
+        <div id="show">
+            <table>
+                <tr>
+                    <th class="name">Imię</th>
+                    <th class="surname">Nazwisko</th>
+                    <th class="email">e-mail</th>
+                    <th class="mac">adres MAC</th>
+                    <th class="signal">poziom sygnalu</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="user in mainCtrl.users">
+                    <td contenteditable='true'>{{ user.name }}</td>
+                    <td contenteditable='true'>{{ user.surname }}</td>
+                    <td contenteditable='true'>{{ user.mail }}</td>
+                    <td contenteditable='true'>{{ user.mac }}</td>
+                    <td contenteditable='true'><input type="range" min="-100" max="100" value="{{ user.signal }}" class="slider" id="myRange"></td>
+                    <td style="text-align: center">
+                        <button ng-click="mainCtrl.remove(user)">Usuń</button>
+                    </td>
+                </tr>
+            </table>
+            <p id="info">* edytuj użytkownika przez umieszczenie kursora w polu tabeli...</p>
+            <br>
+            <br>       
+            <table>
+                <tr>
+                    <th class="name">Imię</th>
+                    <th class="surname">Nazwisko</th>
+                    <th class="email">e-mail</th>
+                    <th class="mac">adres MAC</th>
+                    <th class="signal">poziom sygnalu</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" ng-model="mainCtrl.name">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="mainCtrl.surname">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="mainCtrl.mail">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="mainCtrl.mac">
+                    </td>
+                    <td contenteditable='true'>
+                        <input type="range" min="-100" max="100" ng-model="mainCtrl.signal" class="slider" id="myRange">
+                    </td>
+                    <td>
+                        <div id="add" style="text-align: center">
+                            <button ng-click="mainCtrl.add()">Dodaj</button>
+                        </div>
+                    </td>
+                </tr>      
+            </table>
+        </div>   
+    </body>
+</html>
